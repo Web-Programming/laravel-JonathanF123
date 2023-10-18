@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\kurikulumcontroller;
+use App\Http\Controllers\prodicontroller;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -93,3 +95,15 @@ Route::get('/fakultas', function (){
     return view('fakultas.index', compact('fakultas', 'kampus'));
 
 });
+
+route::get('/prodi', [prodicontroller::class,'index']);
+route::resource("/kurikulum",kurikulumcontroller::class);
+ //tes di browser dengan mengunjungi
+//1. http://localhost:8000/kurikulum/
+//2. http://localhost:8000/kurikulum/create
+//3. http://localhost:8000/kurikulum/1000
+//4. http://localhost:8000/kurikulum/1000/edit
+
+route::apiResource("/dosen",DosenController::class);
+//tes di browser dengan mengunjungi
+//1. http://localhost:8000/dosen/
