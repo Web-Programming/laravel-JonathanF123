@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\DosenController;
 use App\Http\Controllers\kurikulumcontroller;
+use App\Http\Controllers\MahasiswaController;
 use App\Http\Controllers\prodicontroller;
 use Illuminate\Support\Facades\Route;
 
@@ -25,10 +27,10 @@ Route::get('/kata', function () {
 });
 
 //Route dengan parameter wajib
-Route::get('/mahasiswa/{nama}', function ($nama = "Jonathan Felix Levid" ) {
-    echo "<h1>Halo Nama Saya $nama</h2>";
+// Route::get('/mahasiswa/{nama}', function ($nama = "Jonathan Felix Levid" ) {
+//     echo "<h1>Halo Nama Saya $nama</h2>";
 
-});
+// });
 
 //Route dengan parameter ( tidak wajib)
 Route::get('/mahasiswa2/{nama?}', function ($nama = "Jonathan Felix Levid" ) {
@@ -37,10 +39,10 @@ Route::get('/mahasiswa2/{nama?}', function ($nama = "Jonathan Felix Levid" ) {
 });
 
 //Route denga nparameter
-Route::get('/kata/{nama}/{pekerjaan?}', function ($nama = "Jonathan Felix Levid", $pekerjaan = "Mahasiswa") {
-    echo "<h1>Halo Nama Saya $nama, Pekerjaan saya adalah $pekerjaan</h2>";
+// Route::get('/kata/{nama}/{pekerjaan?}', function ($nama = "Jonathan Felix Levid", $pekerjaan = "Mahasiswa") {
+//     echo "<h1>Halo Nama Saya $nama, Pekerjaan saya adalah $pekerjaan</h2>";
 
-});
+// });
 
 //Redirect
 Route::redirect('/hubungi', function () {
@@ -107,3 +109,8 @@ route::resource("/kurikulum",kurikulumcontroller::class);
 route::apiResource("/dosen",DosenController::class);
 //tes di browser dengan mengunjungi
 //1. http://localhost:8000/dosen/
+
+Route::get('/mahasiswa/insert-elq', [MahasiswaController::class,'insertElq']);
+Route::get('/mahasiswa/update-elq', [MahasiswaController::class,'updateElq']);
+Route::get('/mahasiswa/delete-elq', [MahasiswaController::class,'deleteElq']);
+Route::get('/mahasiswa/select-elq', [MahasiswaController::class,'selectElq']);
