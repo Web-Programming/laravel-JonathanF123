@@ -2,8 +2,8 @@
 @section('title', 'Halaman Mahasiswa')
 
 @section('content')
-<h2>Mahasiswa</h2>
-<table>
+
+<table class="table table-stripped">
     <thead>
         <tr>
             <th>
@@ -11,6 +11,9 @@
             </th>
             <th>
                 Nama Mahasiswa
+            </th>
+            <th>
+                Nama Prodi
             </th>
         </tr>
     </thead>
@@ -22,6 +25,9 @@
             </td>
             <td>
                 {{$item->nama}}
+            </td>
+            <td>
+                {{ $item->prodi->nama }}
             </td>
         </tr>
         @endforeach

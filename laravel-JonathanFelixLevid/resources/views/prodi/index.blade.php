@@ -9,12 +9,17 @@
             <th>
                 NPM
             </th>
-            <th>Nama Mahasiswa</th><th>Nama Prodi</th>
+            <th>
+                Nama Mahasiswa
+            </th>
+            <th>
+                Nama Prodi
+            </th>
         </tr>
     </thead>
     <tbody>
-        @foreach ( $allmahasiswaprodi as $item )
-            <tr><td></td></tr>
+        @foreach ( $allmahasiswa as $item )
+            <tr><td>{{  $item->npm }}</td><td>{{  $item->nama}}</td><td>{{ $item->nama_prodi }}</td></tr>
         @endforeach
     </tbody>
 </table>

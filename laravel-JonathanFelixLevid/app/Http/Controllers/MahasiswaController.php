@@ -68,7 +68,7 @@ class MahasiswaController extends Controller
         $result = DB::table('mahasiswas')->get();
         return view('mahasiswa.index');
     }
-    
+
     public function insertElq() {
         $mahasiswa = new Mahasiswa;
         $mahasiswa->npm = '1922110008';
@@ -96,5 +96,12 @@ class MahasiswaController extends Controller
         $kampus = "Universitas Multi Data Palembang";
         $mahasiswa = Mahasiswa::all();
         return view('mahasiswa.index', ['allmahasiswa' => $mahasiswa, 'kampus' => $kampus]);
+    }
+
+    public function allJoinElq() {
+        $kampus = "Universitas Multi Data Palembang";
+        $mahasiswas = Mahasiswa::has('prodi')->get();
+        return view('mahasiswa.index',['allmahasiswa' => $mahasiswas, 'kampus' => $kampus]);
+
     }
 }
