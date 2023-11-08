@@ -32,4 +32,26 @@ class prodicontroller extends Controller
             echo "<hr>";
         }
     }
+    public function create(){
+        return view('prodi.create');
+    }
+
+    public function store(Request $request){
+        // dump($request);
+        // echo $request->nama;
+
+        $validateData = $request->validate([
+            'nama' => 'required|min:5|max20',
+        ]);
+        // dump($valitedata);
+        // echo $valitedata['nama'];
+
+        $prodi = new Prodi(); //Nilai Buat Objek
+        $prodi->nama = $validateData['nama']; //Simpan Nilai input ($valitedata['nama']) ke dalam propert nama prodi ($prodi->nama)
+        $prodi->save(); //Simpan ke dalam tabel prodis
+
+        //Retrun "Data prodi $prodi->nama berhasil disimpan ke database"; //tampilkan pesan berhasil
+        $request->session()->flash('info',"Data prodi $prodi->nama berhasil disimpan ke database");
+        return redirect()->route('prodi.create');
+    }
 }
