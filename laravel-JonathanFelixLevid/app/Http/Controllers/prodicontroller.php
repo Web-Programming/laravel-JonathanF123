@@ -9,10 +9,10 @@ use Illuminate\Http\Request;
 
 class prodicontroller extends Controller
 {
-    public function index(){
-        $kampus = "Universitas MDP";
-        return view("prodi.index")->with('KAMPUS', $kampus);
-    }
+    // public function index(){
+    //     $kampus = "Universitas MDP";
+    //     return view("prodi.index")->with('KAMPUS', $kampus);
+    // }
 
     public function allJoinFacade(){
         $kampus = "Universitas Multi Data Palembang";
@@ -53,5 +53,35 @@ class prodicontroller extends Controller
         //Retrun "Data prodi $prodi->nama berhasil disimpan ke database"; //tampilkan pesan berhasil
         $request->session()->flash('info',"Data prodi $prodi->nama berhasil disimpan ke database");
         return redirect('prodi/create');
+    }
+
+    public function index(){
+        $prodis = Prodi::all();
+        return view('prodi.index')->with('prodis', $prodis);
+    }
+
+    public function show(Prodi $prodi){
+        return view('prodi.show', ['prodi' => $prodi]);
+    }
+
+    public function edit(Prodi $prodi){
+        return view('prodi.edit', ['prodi'=> $prodi]);
+    }
+
+    public function update (Request $request, Prodi $prodi){
+        //dump($request)->all();
+        //dump($prodi)
+        $validateData = $request->validate([
+            'nama'=> 'required|min:5|max:20',
+        ]);
+
+        Prodi::where('id', $prodi->id)->update($validateData);
+        $request->session()->flash('info',"Data Prodi $prodi->nama berhasil diubah");
+        return redirect()->route('prodi.index');
+    }
+
+    public function destroy(Prodi $prodi){
+        $prodi->delete();
+        return redirect()->route('prodi.index')->with("info", "Prodi $prodi->nama berhasil dihapus.");
     }
 }
