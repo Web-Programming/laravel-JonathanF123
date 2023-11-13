@@ -121,3 +121,5 @@ Route::get('/mahasiswa/all-join-elq', [MahasiswaController::class,'allJoinElq'])
 Route::get('/prodi/create', [ProdiController::class,'create']);
 Route::post('prodi/store', [ProdiController::class,'store']);
 
+ Route::get('/prodi', [ProdiController::class,'index’])->name('prodi.index’);
+ Route::get('/prodi/{id}', [ProdiController::class,'show'])->name('prodi.show');

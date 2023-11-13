@@ -41,7 +41,7 @@ class prodicontroller extends Controller
         // echo $request->nama;
 
         $validateData = $request->validate([
-            'nama' => 'required|min:5|max20',
+            'nama' => 'required|min:5|max:20',
         ]);
         // dump($valitedata);
         // echo $valitedata['nama'];
@@ -52,6 +52,6 @@ class prodicontroller extends Controller
 
         //Retrun "Data prodi $prodi->nama berhasil disimpan ke database"; //tampilkan pesan berhasil
         $request->session()->flash('info',"Data prodi $prodi->nama berhasil disimpan ke database");
-        return redirect()->route('prodi.create');
+        return redirect('prodi/create');
     }
 }
