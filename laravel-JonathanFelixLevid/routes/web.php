@@ -4,6 +4,7 @@ use App\Http\Controllers\DosenController;
 use App\Http\Controllers\kurikulumcontroller;
 use App\Http\Controllers\MahasiswaController;
 use App\Http\Controllers\prodicontroller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -130,3 +131,8 @@ Route::post('prodi/store', [ProdiController::class,'store'])->name('prodi.create
  Route::get('/prodi/{prodi}/edit', [ProdiController::class, 'edit'])->name('prodi.edit');
  Route::patch('/prodi/{prodi}', [ProdiController::class,'update'])->name('prodi.update');
  Route::delete('/prodi/{prodi}', [ProdiController::class, 'destroy'])->name('prodi.destroy');
+
+ Auth::routes();
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::get('/prodi', [ProdiController::class,'index'])->name('prodi.index')->middleware('auth');

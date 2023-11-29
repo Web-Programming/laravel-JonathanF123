@@ -103,7 +103,9 @@ class prodicontroller extends Controller
         return redirect()->route('prodi.index')->with("info", "Prodi $prodi->nama berhasil dihapus.");
     }
 
-
+    public function __construct(){
+        $this->middleware('auth')->except('create');
+    }
 
 
 }
