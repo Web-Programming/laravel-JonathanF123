@@ -1,8 +1,11 @@
 <?php
 
-use App\Http\Controllers\Auth\RegisterController;
+namespace App\Http\Controllers\API;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\API\BaseController;
+use App\Http\Controllers\API\RegisterController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,3 +24,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::post('register', [RegisterController::class, 'register']);
 Route::post('login', [RegisterController::class, 'login']);
+
+Route::middleware('auth:sanctum')->get('/prodi', [ProdiController::class, 'index']);
+Route::middleware('auth:sanctum')->post('/prodi/store', [ProdiController::class, 'store']);
+Route::middleware('auth:sanctum')->post('/prodi/update/{id}', [ProdiController::class, 'update']);
+Route::middleware('auth:sanctum')->delete('/prodi/delete/{id}', [ProdiController::class, 'delete']);
